@@ -1,0 +1,28 @@
+{
+  "name": "dating-site",
+  "version": "1.0.0",
+  "description": "A boilerplate for checking the details of a specific person",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sajjad0405/Project-tech.git"
+  },
+  "keywords": [
+    "dating-app",
+    "view",
+    "details"
+  ],
+  "author": "root",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sajjad0405/Project-tech/issues"
+  },
+  "homepage": "https://github.com/Sajjad0405/Project-tech#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
