@@ -16,7 +16,7 @@
     "view",
     "details"
   ],
-  "author": "root",
+  "author": "Sajjad Ali",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Sajjad0405/Project-tech/issues"
@@ -24,5 +24,8 @@
   "homepage": "https://github.com/Sajjad0405/Project-tech#readme",
   "devDependencies": {
     "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
   }
 }
