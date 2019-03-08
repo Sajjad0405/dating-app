@@ -1,7 +1,7 @@
 body {
     padding: 0;
     margin: 0;
-    font-family: sans-serif
+    font-family: ubuntu;
 }
 
 nav {
@@ -11,6 +11,7 @@ nav {
     padding-bottom: 0.5em;
     padding-left: -0.5em;
     width: 100%;
+    font-size: 1.2em;
 }
 
 nav ul {
@@ -44,7 +45,7 @@ img {
 }
 
 main {
-    width: 60%;
     margin-left: auto;
     margin-right: auto;
+    width: 90%;
 }
