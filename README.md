@@ -4,7 +4,7 @@
 
 ### Clone
 
-Clone this repository to your local system by using this link -> "https://github.com/Sajjad0405/Project-tech.git"
+Clone this repository to your local system by using this link -> "https://github.com/Sajjad0405/dating-app.git"
 
 ### Run this code
 
@@ -13,6 +13,7 @@ To install Node modules, run this line of code:
 npm install
 
 ```
+<<<<<<< HEAD
 
 ### Start the app
 
