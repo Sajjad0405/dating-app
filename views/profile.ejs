@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="" dir="ltr">
+<head>
+  <meta name="charset='UTF-8'" content="">
+  <meta name="viewport" content="width=device-width", inital-scale=1.0>
+  <link href="../static/styles/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<main>
+  <nav>
+    <ul>
+      <li> <a href="/">Home</a> </li>
+      <li><a href="/">Profile</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <img src="../static/images/avatar.png" alt="Profile picture">
+    <ul>
+      <% for (let i = 0; i < data.length; i++) { %>
+          <li>Naam: <%= data[i].naam %></li>
+          <li>Interest: <%= data[i].interest %> </li>
+          <li>Gender: <%= data[i].geslacht %> </li>
+      <% } %>
+
+    </ul>
+
+    <p>One liner about yourself</p>
+
+  </section>
+
+  <section>
+    <div>
+      <h2>Overeenkomende interesses</h2>
+      <article class="populair">
+        <h2>Dansen</h2>
+        <a href="/"><img src="https://previews.123rf.com/images/eatcute/eatcute1408/eatcute140801933/31019938-dancing-flat-icon-with-long-shadow.jpg" alt="Dansen icoon"></a>
+        <h3>Dansen is iets waar ik plezier in vind</h3>
+
+      </article>
+    </div>
+  </section>
+
+
+</main>

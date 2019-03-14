@@ -13,7 +13,6 @@ To install Node modules, run this line of code:
 npm install
 
 ```
-<<<<<<< HEAD
 
 ### Start the app
 

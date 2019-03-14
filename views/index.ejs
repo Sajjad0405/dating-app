@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>
+      Title
+    </title>
+
+    <link rel="text" href="../static/styles/main.css">
+  </head>
+
+<body>
+  <form action="index.html" method="post">
+    <fieldset>
+      <input type="text" name="" value="">
+      <input type="text" name="" value="">
+      <input type="submit" name="" value="">
+    </fieldset>
+
+    <% for (let i = 0; i < data.length; i++) { %>
+        <h3>Voornaam: <%= data[i].naam %></h3>
+        <h3>Ineterst: <%= data[i].interest %> </h3>
+        <h3>Gender: <%= data[i].geslacht %> </h3>
+    <% } %>
+  </form>
+
+</body>
