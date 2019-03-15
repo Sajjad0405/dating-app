@@ -16,9 +16,11 @@
     </fieldset>
 
     <% for (let i = 0; i < data.length; i++) { %>
-        <h3>Voornaam: <%= data[i].naam %></h3>
-        <h3>Ineterst: <%= data[i].interest %> </h3>
-        <h3>Gender: <%= data[i].geslacht %> </h3>
+        <h3>Voornaam: <%= data[i].voornaam %></h3>
+        <h3>Achternaam: <%= data[i].achternaam %> </h3>
+        <h3>Leeftijd: <%= data[i].leeftijd %> </h3>
+        <h3>Dansen: <%= data[i].dansen %> </h3>
+        <h3>Gamen: <%= data[i].gamen %> </h3>
     <% } %>
   </form>
 

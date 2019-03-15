@@ -6,14 +6,17 @@
   <link href="../static/styles/main.css" rel="stylesheet" type="text/css">
 </head>
 
-<main>
+<header>
   <nav>
     <ul>
       <li> <a href="/">Home</a> </li>
       <li><a href="/">Profile</a></li>
     </ul>
   </nav>
+</header>
 
+
+<main>
   <section>
     <img src="../static/images/avatar.png" alt="Profile picture">
     <ul>
@@ -29,9 +32,15 @@
 
   </section>
 
+  <form action="/profile" method="post">
+    <fieldset>
+      <button type="submit" name="Toevoegen">Add Hobby</button>
+    </fieldset>
+  </form>
+
   <section>
     <div>
-      <h2>Overeenkomende interesses</h2>
+      <h2>Mijn interesses</h2>
       <article class="populair">
         <h2>Dansen</h2>
         <a href="/"><img src="https://previews.123rf.com/images/eatcute/eatcute1408/eatcute140801933/31019938-dancing-flat-icon-with-long-shadow.jpg" alt="Dansen icoon"></a>

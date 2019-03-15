@@ -1,44 +1,44 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Nexa';
-    font-size: 1em;
-    margin: 0;
-    padding: 0;
+  font-family: 'Nexa';
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
 }
 
 main {
-    background-color: #FF3268;
+  background-color: #FF3268;
 }
 
 p {
-    font-size: 0.8em;
-    line-height: 1.5em;
+  font-size: 0.8em;
+  line-height: 1.5em;
 }
 
 hr {
-    height: 0.07rem;
-    border: 0;
-    background-color: #e6e6e6;
-    margin: 0;
+  height: 0.07rem;
+  border: 0;
+  background-color: #e6e6e6;
+  margin: 0;
 }
 
 section {
-    padding: 1em;
+  padding: 1em;
 }
 
 section div {
-    background-color: #F4E6D8;
-    display: flex;
-    overflow-x: scroll;
-    margin-bottom: 1.3em;
-    border-radius: 0.5em 0.5em 0em 0em;
-    margin-left: 1em;
-    margin-right: 1em;
-    padding-left: 0.8em;
-    padding-right: 0.8em;
+  background-color: #F4E6D8;
+  display: flex;
+  overflow-x: scroll;
+  margin-bottom: 1.3em;
+  border-radius: 0.5em 0.5em 0em 0em;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
 }
 
 section:nth-of-type(1) {
@@ -76,118 +76,161 @@ section:nth-of-type(1) p {
 }
 
 section div:nth-child(1) {
-    overflow-x: hidden;
-    margin-bottom: -1em;
-    background-color: white;
+  overflow-x: scroll;
+  margin-bottom: -1em;
+  background-color: white;
 }
 
 section div:nth-child(1) h2 {
-    color: white;
-    font-size: 1.4em;
-    margin-left: auto;
-    margin-right: auto;
+  color: white;
+  font-size: 1.4em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-section:nth-of-type(1) > div:nth-of-type(1) {
-    background-color: #2800a0;
-    margin-bottom: 0;
+section:nth-of-type(1)>div:nth-of-type(1) {
+  background-color: #2800a0;
+  margin-bottom: 0;
 }
 
-section:nth-of-type(2) > div:nth-of-type(1) {
-    background-color: #2800a0;
-    margin-bottom: 0;
+section:nth-of-type(2)>div:nth-of-type(1) {
+  background-color: #2800a0;
+  margin-bottom: 0;
 }
 
 .populair {
-    background-color: white;
-    border-radius: 0em;
+  background-color: white;
 }
 
 div article {
-    flex-shrink: 0;
-    width: 15em;
-    margin: 1em;
-    -webkit-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.33);
-    -moz-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.33);
-    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.33);
-    padding: 1em;
+  flex-shrink: 0;
+  width: 15em;
+  margin: 1em;
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.33);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.33);
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.33);
+  padding: 1em;
 }
 
-article > h2 {
-    background-color: white;
-    color: #00d66c;
+article>h2 {
+  background-color: white;
+  color: #00d66c;
 }
 
 section > h2 {
-    font-size: 1.4em;
-    color: white;
-    background: #ff3268;
-    border: 1em;
+  font-size: 1.4em;
+  color: white;
+  background: #ff3268;
+  border: 1em;
 }
 
 article {
-    background-color: white;
-    border-radius: 5px;
-    padding: 0.5em 0 0.5em;
-    margin-bottom: 0.9em;
-    margin-right: 1em;
-    color: #00d66c;
-    border-radius: 5px;
-    font-size: 1em;
-    position: relative;
+  background-color: white;
+  border-radius: 5px;
+  padding: 0.5em 0 0.5em;
+  margin-bottom: 0.9em;
+  margin-right: 1em;
+  color: #00d66c;
+  border-radius: 5px;
+  font-size: 1em;
+  position: relative;
 }
 
-article > p {
-    color: black;
+article>p {
+  color: black;
 }
 
 article img {
-    width: 13em;
-    margin-left: auto;
-    margin-right: auto;
+  width: 13em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 nav {
-    background-color: orange;
-    display: flex;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    padding-left: -0.5em;
-    width: 100%;
-    font-size: 1.2em;
+  background-color: orange;
+  display: flex;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: -0.5em;
+  width: 100%;
+  font-size: 1.2em;
 }
 
 nav ul {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: auto;
-    margin-top: -0.1em;
-    list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+  margin-top: -0.1em;
+  list-style: none;
 }
 
 nav ul li {
-    position: relative;
-    margin-bottom: -1em;
-    margin-right: 1.5em;
-    padding-left: 0.5em;
-    padding-top: 0.3em;
+  position: relative;
+  margin-bottom: -1em;
+  margin-right: 1.5em;
+  padding-left: 0.5em;
+  padding-top: 0.3em;
 }
 
 nav ul li a {
-    color: whitesmoke;
-    text-decoration: none;
-    font-weight: bold;
+  color: whitesmoke;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-input {
+.login-main {
+  padding-top: 2em;
+  background: transparent;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form fieldset {
+  border: none;
+  display: flex;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+form legend {
+  font-family: "Nexa";
+  font-weight: bold;
+  color: #1f1799;
+  font-size: 1.7em;
+  border-radius: 0.5em 0.5em 0 0;
+  margin-bottom: 0.6em;
+  padding-top: 1em;
+  padding-bottom: 0em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input[type="submit"], [type="text"] {
   width: 10em;
   display: flex;
   height: 3em;
   border: none;
   border-radius: 5px;
   margin-bottom: 1em;
+}
+
+input[type="text"] {
+  background-color: lime;
+}
+
+@media (min-width: 64em) {
+  main {
+    width: 60em;
+    margin: auto;
+  }
 }
