@@ -20,15 +20,15 @@ var data = [
 ];
 
 // view engine setup
+app
+  .set('view engine', 'ejs')
+  .set('views', 'views')
+  .use('/static', express.static('static'))
 
-app.set('view engine', 'ejs');
-app.set('views', 'views');
-app.use('/static', express.static('static'));
 
-
-app.get('/', home)
-app.get('/about', about)
-app.get('/profile', profile)
+  .get('/', home)
+  .get('/about', about)
+  .get('/profile', profile)
 
 
 function home (req, res) {
