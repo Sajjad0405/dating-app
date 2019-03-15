@@ -1,13 +1,6 @@
 const express = require('express');
-const slug = require('slug');
-const bodyParser = require('body-parser');
-const port = 8000;
 
-const app = express();
-
-
-var data = [
-  {
+var data = [{
     naam: 'Jaap',
     interest: 'Dansen',
     geslacht: 'Man'
@@ -20,28 +13,33 @@ var data = [
 ];
 
 // view engine setup
+express()
 
-app.set('view engine', 'ejs');
-app.set('views', 'views');
-app.use('/static', express.static('static'));
-
-
-app.get('/', home)
-app.get('/about', about)
-app.get('/profile', profile)
+  .set('view engine', 'ejs')
+  .set('views', 'views')
+  .use('/static', express.static('static'))
 
 
-function home (req, res) {
+  .get('/', home)
+  .get('/about', about)
+  .get('/profile', profile)
 
-  res.render('index.ejs', {data});
+  .listen(8000)
+
+
+function home(req, res) {
+
+  res.render('index.ejs', {
+    data
+  });
 }
 
-function about (req, res) {
-    res.render('about.ejs');
+function about(req, res) {
+  res.render('about.ejs');
 }
 
-function profile (req, res) {
-    res.render('profile.ejs', {data});
+function profile(req, res) {
+  res.render('profile.ejs', {
+    data
+  });
 }
-
-app.listen(port);
