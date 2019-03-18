@@ -8,20 +8,41 @@
   </head>
 
 <body>
-  <form action="index.html" method="post">
-    <fieldset>
-      <input type="text" name="" value="">
-      <input type="text" name="" value="">
-      <input type="submit" name="" value="">
-    </fieldset>
-
     <% for (let i = 0; i < data.length; i++) { %>
         <h3>Voornaam: <%= data[i].voornaam %></h3>
         <h3>Achternaam: <%= data[i].achternaam %> </h3>
         <h3>Leeftijd: <%= data[i].leeftijd %> </h3>
-        <h3>Dansen: <%= data[i].dansen %> </h3>
-        <h3>Gamen: <%= data[i].gamen %> </h3>
+        <button id="js-remove" data-id='<%= data[i].id %>' class="danger">Remove</button>
+
     <% } %>
-  </form>
 
 </body>
+
+<script type="text/javascript">
+
+var remove = document.getElementById('js-remove');
+
+if (remove) {
+  remove.addEventListener('click', onremove)
+}
+
+function onremove(ev) {
+
+  var node = ev.target;
+  var id = node.dataset.id;
+
+  var res = new XMLHttpRequest()
+
+  res.open('DELETE', '/' + id)
+  res.onload = onload
+  res.send()
+
+  function onload() {
+    if (res.status !== 200) {
+      throw new Error('Could not delete!')
+    }
+    window.location = '/'
+  }
+
+}
+</script>
