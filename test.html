@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<script type="text/javascript">
+    var i = 0;
+    var images = [];
+    var time = 3000;
+
+
+    images[0] = 'static/images/add.png';
+    images[1] = 'static/images/avatar.png';
+    images[2] = 'static/images/dansen.jpg';
+
+
+    function changeImage() {
+
+        console.log(images[i]);
+        console.log(document);
+
+
+        document.slide.src = images[i];
+
+        if (i < images.length - 1) {
+            i++;
+        } else {
+            i = 0;
+        }
+
+        setTimeout("changeImage()", time);
+    }
+
+    window.onload = changeImage();
+
+</script>
+
+<body>
+    <img name="slide" width="400" height="200" />
+</body>
+
+</html>

@@ -1,11 +1,14 @@
 const express = require('express');
 const slug = require('slug');
 const bodyParser = require('body-parser');
+const multer = require('multer');
 const port = 8000;
 
 const app = express();
 
 var data = [];
+
+let upload = multer({dest: 'static/uploads/'})
 
 // view engine setup
 app
@@ -19,7 +22,8 @@ app
    .get('/about', about)
    .get('/profile', profile)
    .get('/hobby', hobby)
-   .post('/', addHobby)
+
+   .post('/', upload.single('image'), addHobby)
    .get('/:id', hobbyDetail)
    .delete('/:id', remove)
 
@@ -43,21 +47,22 @@ function hobby (req, res) {
 }
 
 function addHobby (req, res) {
-  var id = slug(req.body.voornaam).toLowerCase();
+  var id = slug(req.body.gameNaam).toLowerCase();
 
   data.push({
     id: id,
-    voornaam: req.body.voornaam,
-    achternaam: req.body.achternaam,
-    leeftijd: req.body.leeftijd
+    gameNaam: req.body.gameNaam,
+    console: req.body.console,
+    type: req.body.type,
+    image: req.file ? req.file.filename : null
   })
 
-  res.redirect('/' + id);
+  res.redirect('/:' + id);
   return data;
 }
 
 function hobbyDetail (req, res) {
-  res.render('index.ejs', {data});
+  res.render('profile.ejs', {data});
   console.log({data});
 }
 

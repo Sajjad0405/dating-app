@@ -13,16 +13,18 @@ main {
   background-color: #FF3268;
 }
 
-p {
-  font-size: 0.8em;
-  line-height: 1.5em;
+section:nth-of-type(1) {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
 }
 
-hr {
-  height: 0.07rem;
-  border: 0;
-  background-color: #e6e6e6;
-  margin: 0;
+section:nth-of-type(1) img {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 11em;
 }
 
 section {
@@ -41,56 +43,17 @@ section div {
   padding-right: 0.8em;
 }
 
-section:nth-of-type(1) {
-  width: 90%;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  flex-direction: column;
-  background-color: white;
-  margin-top: 1em;
-  border-radius: 0.5em;
-}
-
-section:nth-of-type(1) img {
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  width: 12em;
-}
-
-section:nth-of-type(1) ul, section:nth-of-type(1) p {
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  flex-direction: column;
-  list-style: none;
-  color: black;
-  font-size: 1.4em;
-  padding: 0;
-}
-
-section:nth-of-type(1) p {
-  font-style: italic;
-  color: gray;
-}
-
 section div:nth-child(1) {
-  overflow-x: scroll;
+  overflow-x: hidden;
   margin-bottom: -1em;
   background-color: white;
 }
 
 section div:nth-child(1) h2 {
   color: white;
-  font-size: 1.4em;
+  font-size: 2em;
   margin-left: auto;
   margin-right: auto;
-}
-
-section:nth-of-type(1)>div:nth-of-type(1) {
-  background-color: #2800a0;
-  margin-bottom: 0;
 }
 
 section:nth-of-type(2)>div:nth-of-type(1) {
@@ -98,8 +61,20 @@ section:nth-of-type(2)>div:nth-of-type(1) {
   margin-bottom: 0;
 }
 
+section:nth-of-type(2) form {
+  display: flex;
+  position: absolute;
+  z-index: 1;
+}
+
+section:nth-of-type(2) form input[type="submit"] {
+  margin-left: 14em;
+  padding: 1em;
+}
+
 .populair {
   background-color: white;
+  border-radius: 0em;
 }
 
 div article {
@@ -112,7 +87,7 @@ div article {
   padding: 1em;
 }
 
-article>h2 {
+article > h2 {
   background-color: white;
   color: #00d66c;
 }
@@ -134,16 +109,6 @@ article {
   border-radius: 5px;
   font-size: 1em;
   position: relative;
-}
-
-article>p {
-  color: black;
-}
-
-article img {
-  width: 13em;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 img {

@@ -7,7 +7,7 @@ if (remove) {
 function onremove(ev) {
 
   console.log("Bla bla");
-  
+
   var node = ev.target;
   var id = node.dataset.id;
 

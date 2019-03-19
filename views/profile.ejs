@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="" dir="ltr">
+
 <head>
   <meta name="charset='UTF-8'" content="">
-  <meta name="viewport" content="width=device-width", inital-scale=1.0>
+  <meta name="viewport" content="width=device-width" , inital-scale=1.0>
   <link href="../static/styles/main.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -15,40 +16,49 @@
   </nav>
 </header>
 
+<body>
+  <main>
+    <section>
+      <img src="../static/images/avatar.png" alt="Profile picture">
+      <ul>
+        <% for (let i = 0; i < data.length; i++) { %>
 
-<main>
-  <section>
-    <img src="../static/images/avatar.png" alt="Profile picture">
-    <ul>
-      <% for (let i = 0; i < data.length; i++) { %>
-          <li>Naam: <%= data[i].naam %></li>
-          <li>Interest: <%= data[i].interest %> </li>
-          <li>Gender: <%= data[i].geslacht %> </li>
-      <% } %>
+        <li>Game naam: <%= data[i].gameNaam %></li>
+        <li>Type: <%= data[i].type %> </li>
+        <li>Console: <%= data[i].console %> </li>
+        <% } %>
+      </ul>
 
-    </ul>
+      <p>One liner about yourself</p>
 
-    <p>One liner about yourself</p>
+    </section>
 
-  </section>
+    <section>
+      <div>
+        <h2>
+          Mijn games
+        </h2>
+      </div>
 
-  <form action="/profile" method="post">
-    <fieldset>
-      <button type="submit" name="Toevoegen">Add Hobby</button>
-    </fieldset>
-  </form>
+      <div class="populair">
+        <form>
+          <fieldset>
+            <a href="hobby">Add game</a>
+          </fieldset>
+        </form>
 
-  <section>
-    <div>
-      <h2>Mijn interesses</h2>
-      <article class="populair">
-        <h2>Dansen</h2>
-        <a href="/"><img src="https://previews.123rf.com/images/eatcute/eatcute1408/eatcute140801933/31019938-dancing-flat-icon-with-long-shadow.jpg" alt="Dansen icoon"></a>
-        <h3>Dansen is iets waar ik plezier in vind</h3>
+        <% for (let i = 0; i < data.length; i++) { %>
+        <article>
+          <h2><%= data[i].gameNaam%></h2>
+          <a href="#"><img src="../static/images/dansen.jpg" alt=""></a>
+          <h3>Type: <%= data[i].type %></h3>
+          <h3>Console: <%= data[i].console %></h3>
+        </article>
+        <% } %>
+      </div>
+    </section>
 
-      </article>
-    </div>
-  </section>
 
+  </main>
 
-</main>
+</body>
