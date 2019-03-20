@@ -21,10 +21,10 @@ app
    .get('/', home)
    .get('/about', about)
    .get('/profile', profile)
-   .get('/hobby', hobby)
+   .get('/game', game)
 
-   .post('/', upload.single('image'), addHobby)
-   .get('/:id', hobbyDetail)
+   .post('/', upload.single('image'), addGame)
+   .get('/:id', gameDetail)
    .delete('/:id', remove)
 
    .listen(port)
@@ -42,11 +42,11 @@ function profile (req, res) {
     res.render('profile.ejs', {data});
 }
 
-function hobby (req, res) {
-  res.render('hobby.ejs');
+function game (req, res) {
+  res.render('game.ejs');
 }
 
-function addHobby (req, res) {
+function addGame (req, res) {
   var id = slug(req.body.gameNaam).toLowerCase();
 
   data.push({
@@ -57,11 +57,11 @@ function addHobby (req, res) {
     image: req.file ? req.file.filename : null
   })
 
-  res.redirect('/:' + id);
+  res.redirect('/' + id);
   return data;
 }
 
-function hobbyDetail (req, res) {
+function gameDetail (req, res) {
   res.render('profile.ejs', {data});
   console.log({data});
 }
