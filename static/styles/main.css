@@ -192,6 +192,7 @@ nav ul li a {
 }
 
 .form-div input[type="text"],
+.form-div input[type="number"],
 .form-div select {
 	display: block;
 	box-sizing: border-box;

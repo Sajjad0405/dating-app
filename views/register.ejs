@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="" dir="ltr">
+
+<head>
+  <meta name="charset='UTF-8'" content="">
+  <meta name="viewport" content="width=device-width" , inital-scale=1.0>
+  <link href="../static/styles/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<header>
+  <nav>
+    <ul>
+      <li> <a href="/">Home</a> </li>
+      <li><a href="/">Profile</a></li>
+    </ul>
+  </nav>
+</header>
+
+<body>
+  <main>
+    <div class="form-div">
+        <h1>Make an account</h1>
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <div class="inner-wrap">
+                <label for="firstname">
+                  First name 
+                  <input type="text" name="firstName" />
+                </label>
+
+                <label for="lastname">
+                    Last name 
+                    <input type="text" name="lastName" />
+                </label>
+
+                <label for="name">
+                    Age 
+                    <input type="number" name="age" />
+                </label>
+
+                <label>
+                  Geslacht
+                  <select name="type">
+                    <option value="man">Male</option>
+                    <option value="vrouw">Female</option>
+                  </select>
+                </label>
+            </div>
+
+            <div>
+             <input type="submit" name="toevoegen" value="Make account" />
+            </div>
+        </form>
+    </div>
+  </main>
+</body>

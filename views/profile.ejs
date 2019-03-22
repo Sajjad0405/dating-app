@@ -41,7 +41,7 @@
         <% for (let i = 0; i < data.length; i++) { %>
         <article>
           <h2><%= data[i].gameNaam%></h2>
-          <a href="#"><img src="../static/images/dansen.jpg" alt=""></a>
+          <a href="gamedetail"><img src="../static/images/dansen.jpg" alt=""></a>
           <h3>Type: <%= data[i].type %></h3>
           <h3>Console: <%= data[i].console %></h3>
           <button id="js-remove" data-id='<%= data[i].id %>' class="danger">Remove</button>
@@ -81,7 +81,6 @@
         }
         window.location = '/profile'
       }
-    
     }
     </script>
 </body>

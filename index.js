@@ -2,13 +2,23 @@ const express = require('express');
 const slug = require('slug');
 const bodyParser = require('body-parser');
 const multer = require('multer');
-const port = 8000;
+const mongo = require('mongodb');
 
+require('dotenv').config();
+
+const port = 8000;
 const app = express();
 
-var data = [];
-
+let data = [];
 let upload = multer({dest: 'static/uploads/'})
+
+let url = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT
+
+mongo.MongoClient.connect(url, function (err, client) {
+  if (err) throw err
+  db = client.db(process.env.DB_NAME)
+})
+
 
 // view engine setup
 app
@@ -30,7 +40,6 @@ app
    .listen(port)
 
 function home (req, res) {
-
   res.render('index.ejs', {data});
 }
 
@@ -46,34 +55,50 @@ function game (req, res) {
   res.render('game.ejs');
 }
 
-function addGame (req, res) {
-  var id = slug(req.body.gameNaam).toLowerCase();
+function addGame (req, res, next) {
 
-  data.push({
-    id: id,
+  db.collection("Games").insertOne({
+
+    id: slug(req.body.gameNaam).toLowerCase(),
     gameNaam: req.body.gameNaam,
     console: req.body.console,
-    type: req.body.type,
-    image: req.file ? req.file.filename : null
-  })
+    type: req.body.type
+  }, done)
 
-  res.redirect('/' + id);
-  return data;
+  function done(err, data) {
+    if (err) {
+      next(err)
+    } else {
+      res.redirect('/' + data.insertedId) 
+    }
+  }
 }
 
 function gameDetail (req, res) {
-  res.render('profile.ejs', {data});
-  console.log({data});
+
+  db.collection('Games').find().toArray(done)
+
+  function done(err, data) {
+    if(err) {
+      next(err)
+    } else {
+      res.render('profile.ejs', {data})
+    }
+  }
 }
 
 function remove(req, res) {
-    let id = req.params.id;
 
-    console.log(id);
-
-    data = data.filter(function (value) {
-        return value.id !== id;
-    })
-
-    res.json({status: 'ok'});
+    var id = req.params.id
+    db.collection('Games').deleteOne({
+      _id: mongo.ObjectID(id)
+    }, done)
+  
+    function done(err) {
+      if (err) {
+        next(err)
+      } else {
+        res.json({status: 'ok'})
+      }
+    }
 }
