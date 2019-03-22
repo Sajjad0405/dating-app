@@ -11,7 +11,7 @@
   <nav>
     <ul>
       <li> <a href="/">Home</a> </li>
-      <li><a href="/">Profile</a></li>
+      <li><a href="profile">Profile</a></li>
     </ul>
   </nav>
 </header>
@@ -20,7 +20,7 @@
   <main>
     <div class="form-div">
         <h1>Add a game</h1>
-        <form action="/" method="POST">
+        <form action="/" method="POST" enctype="multipart/form-data">
             <div class="inner-wrap">
                 <label for="game">
                   Game name 
@@ -42,6 +42,10 @@
                       <option value="xbox">XBOX</option>
                       <option value="pc">PC</option>
                   </select>
+                </label>
+                <label>
+                    Game image
+                    <input name="gameImage" type=file accept=image/*>
                 </label>
             </div>
             <div class="button-section">

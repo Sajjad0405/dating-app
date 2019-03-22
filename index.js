@@ -34,7 +34,7 @@ app
    .get('/game', game)
    .get('/:id', showGame)
 
-   .post('/', upload.single('image'), addGame)
+   .post('/', upload.single('gameImage'), addGame)
    .get('/:id', gameDetail)
    .delete('/:id', remove)
 
@@ -88,7 +88,8 @@ function addGame (req, res, next) {
     id: slug(req.body.gameNaam).toLowerCase(),
     gameNaam: req.body.gameNaam,
     console: req.body.console,
-    type: req.body.type
+    type: req.body.type,
+    gameImage: req.file ? req.file.filename : null
   }, done)
 
   function done(err, data) {
