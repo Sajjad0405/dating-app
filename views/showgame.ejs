@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="" dir="ltr">
 
 <head>
   <meta name="charset='UTF-8'" content="">
@@ -17,13 +17,22 @@
 </header>
 
 <body>
+  <main>
+    <section>
 
-  <% for (let i = 0; i < data.length; i++) { %>
-  <section>
-      <h3>Game Naam: <%= data[i].gameNaam %></h3>
-      <h3>Console: <%= data[i].console %> </h3>
-      <h3>Type: <%= data[i].type %> </h3>
-  </section>
-  <% } %>
+    </section>
 
+    <section>
+      <div>
+        <h2>
+         <%= data.gameNaam %>
+        </h2>
+        <article>
+            <p> <%= data.type %> </p>
+            <p> <%= data.console %> </p>
+        </article>
+        
+      </div>
+    </section>
+  </main>
 </body>

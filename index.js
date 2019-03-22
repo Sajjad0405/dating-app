@@ -32,6 +32,7 @@ app
    .get('/about', about)
    .get('/profile', profile)
    .get('/game', game)
+   .get('/:id', showGame)
 
    .post('/', upload.single('image'), addGame)
    .get('/:id', gameDetail)
@@ -39,8 +40,33 @@ app
 
    .listen(port)
 
+function showGame(req, res, next) {
+  var id = req.params.id
+
+  db.collection('Games').findOne({
+    _id: mongo.ObjectID(id)
+  }, done)
+
+  function done(err, data) {
+    if (err) {
+      next(err)
+    } else {
+      res.render('showgame.ejs', {data})
+    }
+  }
+}
+
 function home (req, res) {
-  res.render('index.ejs', {data});
+
+  db.collection('Games').find().toArray(done)
+
+  function done(err, data) {
+    if(err) {
+      next(err)
+    } else {
+      res.render('index.ejs', {data})
+    }
+  }
 }
 
 function about (req, res) {
@@ -57,7 +83,7 @@ function game (req, res) {
 
 function addGame (req, res, next) {
 
-  db.collection("Games").insertOne({
+  db.collection('Games').insertOne({
 
     id: slug(req.body.gameNaam).toLowerCase(),
     gameNaam: req.body.gameNaam,
