@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="" dir="ltr">
-
-<head>
-  <meta name="charset='UTF-8'" content="">
-  <meta name="viewport" content="width=device-width" , inital-scale=1.0>
-  <link href="../static/styles/main.css" rel="stylesheet" type="text/css">
-</head>
+<% include partials/head.ejs %>
 
 <header>
   <nav>
@@ -55,32 +48,5 @@
       </div>
     </section>
   </main>
-  
-  <script type="text/javascript">
-
-    var remove = document.getElementById('js-remove');
-    
-    if (remove) {
-      remove.addEventListener('click', onremove)
-    }
-    
-    function onremove(ev) {
-    
-      var node = ev.target;
-      var id = node.dataset.id;
-    
-      var res = new XMLHttpRequest()
-    
-      res.open('DELETE', '/' + id)
-      res.onload = onload
-      res.send()
-    
-      function onload() {
-        if (res.status !== 200) {
-          throw new Error('Could not delete!')
-        }
-        window.location = '/profile'
-      }
-    }
-    </script>
+  <% include partials/tail.ejs %>
 </body>
