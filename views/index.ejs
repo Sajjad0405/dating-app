@@ -23,6 +23,8 @@
       <h3>Game Naam: <%= data[i].gameNaam %></h3>
       <h3>Console: <%= data[i].console %> </h3>
       <h3>Type: <%= data[i].type %> </h3>
+      <img src="static/uploads/<%= data[i].gameImage %>" alt="">
+      <a href="game/<%= data[i]._id %>">View <%= data[i].gameNaam %></a>
   </section>
   <% } %>
 

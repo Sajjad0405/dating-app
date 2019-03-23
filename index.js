@@ -32,14 +32,15 @@ app
    .get('/about', about)
    .get('/profile', profile)
    .get('/game', game)
-   .get('/:id', showGame)
+   .get('/game/:id', showGame) // weergeeft een losse game
 
    .post('/', upload.single('gameImage'), addGame)
-   .get('/:id', gameDetail)
-   .delete('/:id', remove)
+   .get('/', gameDetail) //weergeeft alle games
+   .delete('/game/:id', remove)
 
    .listen(port)
 
+   
 function showGame(req, res, next) {
   var id = req.params.id
 
@@ -96,7 +97,7 @@ function addGame (req, res, next) {
     if (err) {
       next(err)
     } else {
-      res.redirect('/' + data.insertedId) 
+      res.redirect('/game/' + data.insertedId) 
     }
   }
 }
@@ -117,6 +118,7 @@ function gameDetail (req, res) {
 function remove(req, res) {
 
     var id = req.params.id
+
     db.collection('Games').deleteOne({
       _id: mongo.ObjectID(id)
     }, done)
