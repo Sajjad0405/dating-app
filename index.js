@@ -3,14 +3,18 @@ const slug = require('slug');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const mongo = require('mongodb');
+const session = require('express-session');
 
 require('dotenv').config();
 
 const port = 8000;
 const app = express();
 
-let data = [];
-let upload = multer({dest: 'static/uploads/'})
+
+let upload = multer({
+  dest: 'static/uploads/',
+  limits: {fileSize: 5000000}
+})
 
 let url = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT
 
@@ -23,10 +27,17 @@ mongo.MongoClient.connect(url, function (err, client) {
 // view engine setup
 app
 
+    // Setup ejs templating engine and the static folder
    .set('view engine', 'ejs')
    .set('views', 'views')
    .use('/static', express.static('static'))
    .use(bodyParser.urlencoded({ extended: false}))
+   .use(session({
+     resave: false,
+     saveUninitialized: true,
+     secret: process.env.SESSION_SECRET,
+     cookie: {}
+   }))
 
    .get('/', home)
    .get('/about', about)
@@ -97,6 +108,7 @@ function addGame (req, res, next) {
     if (err) {
       next(err)
     } else {
+      req.session.user = {data}
       res.redirect('/game/' + data.insertedId) 
     }
   }

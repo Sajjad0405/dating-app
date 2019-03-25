@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-
-<head>
-  <meta name="charset='UTF-8'" content="">
-  <meta name="viewport" content="width=device-width" , inital-scale=1.0>
-  <link href="../static/styles/main.css" rel="stylesheet" type="text/css">
-</head>
-
-<header>
-  <nav>
-    <ul>
-      <li> <a href="/">Home</a> </li>
-      <li><a href="profile">Profile</a></li>
-    </ul>
-  </nav>
-</header>
+<% include partials/nav.ejs %>
 
 <body>
 
@@ -25,7 +9,7 @@
       <h3>Type: <%= data[i].type %> </h3>
       <img src="static/uploads/<%= data[i].gameImage %>" alt="">
       <a href="game/<%= data[i]._id %>">View <%= data[i].gameNaam %></a>
-  </section>
-  <% } %>
+  </section>  
+  <%}%>
 
 </body>

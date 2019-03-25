@@ -6,14 +6,14 @@ if (remove) {
 
 function onremove(ev) {
 
-  console.log("Bla bla");
-
   var node = ev.target;
   var id = node.dataset.id;
 
+  console.log(node.dataset);
+
   var res = new XMLHttpRequest()
 
-  res.open('DELETE', '/' + id)
+  res.open('DELETE', '/game/' + id)
   res.onload = onload
   res.send()
 
@@ -23,5 +23,4 @@ function onremove(ev) {
     }
     window.location = '/'
   }
-
 }
