@@ -18,7 +18,7 @@ let upload = multer({
 
 let url = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT
 
-mongo.MongoClient.connect(url, function (err, client) {
+mongo.MongoClient.connect(url,{useNewUrlParser: true}, function (err, client) {
   if (err) throw err
   db = client.db(process.env.DB_NAME)
 })
@@ -36,7 +36,7 @@ app
      resave: false,
      saveUninitialized: true,
      secret: process.env.SESSION_SECRET,
-     cookie: {}
+     cookie: { secure: true }
    }))
 
    .get('/', home)
@@ -49,9 +49,10 @@ app
    .get('/', gameDetail) //weergeeft alle games
    .delete('/game/:id', remove)
 
+
    .listen(port)
 
-   
+
 function showGame(req, res, next) {
   var id = req.params.id
 
@@ -108,7 +109,8 @@ function addGame (req, res, next) {
     if (err) {
       next(err)
     } else {
-      req.session.user = {data}
+      req.session.Games = {data}
+      console.log(req.sessions.Games)
       res.redirect('/game/' + data.insertedId) 
     }
   }

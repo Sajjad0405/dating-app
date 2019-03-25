@@ -9,7 +9,8 @@
       <h3>Type: <%= data[i].type %> </h3>
       <img src="static/uploads/<%= data[i].gameImage %>" alt="">
       <a href="game/<%= data[i]._id %>">View <%= data[i].gameNaam %></a>
+      <button id="js-remove" data-id='<%= data._id %>' class="danger">Remove</button>
   </section>  
   <%}%>
-
+  <% include partials/tail.ejs %>
 </body>
