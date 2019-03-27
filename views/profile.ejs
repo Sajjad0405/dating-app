@@ -1,13 +1,21 @@
-<% include partials/nav.ejs %>
+<% include partials/head.ejs %>
+
+<nav>
+  <ul>
+    <li> <a href="/">Matches</a> </li>
+    <li><a href="/profile">Profile</a></li>
+    <li><a href="<%= user.id %>/logout">Uitloggen</a></li>
+  </ul>
+</nav>
 
 <body>
   <main>
     <section>
-      <img class="avatar" src="../static/images/avatar.png" alt="Profile picture">
+      <img class="avatar" src="../static/uploads/<%=user.profilePic%>" alt="Profile picture">
       <ul>
-        <li>Naam: Sajjad Ali </li>
-        <li>Age: 22  </li>
-        <li>Geslacht: Man  </li>
+        <li>Name: <%= user.username %> </li>
+        <li>Age: <%= user.age %> </li>
+        <li>Gender: <%= user.gender %> </li>
       </ul>
     </section>
 

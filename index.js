@@ -11,7 +11,7 @@ const port = 8000;
 const app = express();
 
 
-let data = []
+
 
 let upload = multer({
   dest: 'static/uploads/',
@@ -43,10 +43,12 @@ app
 
    .get('/', home)
    .get('/about', about)
-   .get('/profile', profile)
-   .get('/game', game)
-   .get('/game/:id', showGame) // weergeeft een losse game
+   .get('/profile', redirectLogin ,profile)
+   .get('/game', redirectLogin, game)
+   .get('/game/:id', redirectLogin, showGame) // weergeeft een losse game
    .get('/login', login)
+   .get('/:id', redirectLogin, showUser)
+   .get('/:id/logout', redirectLogin, logOut)
    
 
    .post('/', upload.single('gameImage'), addGame)
@@ -74,6 +76,30 @@ function home (req, res) {
   }
 }
 
+function redirectLogin(req, res, next) {
+  if (!req.session.user) {
+      res.redirect('/login');
+  } else {
+      next();
+  }
+}
+
+function showUser(req, res) {
+  let id = req.params.id;
+  db.collection('Users').findOne({
+      _id: mongo.ObjectID(id)
+  }, function(err, data) {
+      if (err) {
+          console.log('An error has occured', err);
+      } else {
+          res.render('user.ejs', {
+              data,
+              user: req.session.user
+          });
+      }
+  });
+}
+
 function about (req, res) {
     res.render('about.ejs');
 }
@@ -91,9 +117,12 @@ function profile (req, res) {
     if(err) {
       next(err)
     } else {
-      // req.session.game
-      res.render('profile.ejs', {data, game: req.session.game})
-      // console.log(req.session.game);    
+      console.log(req.session.user)
+      res.render('profile.ejs', {
+        data,
+        game: req.session.game,
+        user: req.session.user
+      })
     }
   }
 }
@@ -123,7 +152,7 @@ function addGame (req, res, next) {
     } else {
       req.session.game = {
         id: data.insertedId,
-        gameNaam: req.body.gameNaam
+        gameNaam: req.body.gameNaam,
       };     
     }
     res.redirect('/game/' + data.insertedId)
@@ -164,10 +193,10 @@ function gameDetail (req, res) {
   }
 }
 
+//Check if user has the correct credentials to login
 function checkUser(req, res) {
-  console.log(req.body.username)
   db.collection('Users').find().toArray(done)
-  
+
   function done(err, data) {
     for(let i = 0; i < data.length; i++) {
       if(err) {
@@ -176,16 +205,22 @@ function checkUser(req, res) {
         let id = data[i]._id;
 
         req.session.user = {
-          id: data.insertedId,
+          id: id,
           username: req.body.username,
-          password: req.body.password
+          password: req.body.password,
+          age: data[i].age,
+          gender: data[i].gender,
+          profilePic: data[i].profilePic
         };
-        res.redirect('/');
+        res.redirect('/' + id);
+      } else {
+        res.redirect('/login.ejs');
       }
     }
   }
 }
 
+//Remove a game
 function remove(req, res) {
 
     let id = req.params.id
@@ -199,8 +234,16 @@ function remove(req, res) {
       } else {
         res.json({status: 'ok'})
       }
-
-      // req.session.destroy;
-      // console.log(req.session)
     }
+}
+
+//Logout as a user and get redirected to index/home. The session gets destoyed!
+function logOut(req, res) {
+  req.session.destroy(function (err) {
+      if (err) {
+          console.log("An error has occured", err);
+      } else {
+          res.redirect('/');
+      }
+  });
 }

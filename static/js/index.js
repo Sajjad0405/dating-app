@@ -21,6 +21,6 @@ function onremove(ev) {
     if (res.status !== 200) {
       throw new Error('Could not delete!')
     }
-    window.location = '/'
+    window.location = '/profile'
   }
 }
