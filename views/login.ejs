@@ -1,0 +1,27 @@
+<% include partials/nav.ejs %>
+
+<body>
+  <main>
+    <div class="form-div">
+        <h1>Log in</h1>
+        <form action="/login" method="POST">
+            <div class="inner-wrap">
+                <label for="username">
+                  Username 
+                  <input required type="text" name="username" id="username" />
+                </label>
+                <label for="password">
+                    Password 
+                    <input required type="password" name="password" id="password" />
+                  </label>
+            </div>
+            <div class="button-section">
+             <input type="submit" name="toevoegen" value="Log in" />
+            </div>
+        </form>
+    </div>
+  </main>
+  <% include partials/tail.ejs %>
+</body>
+
+</html>

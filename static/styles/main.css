@@ -19,7 +19,7 @@ section:nth-of-type(1) {
   flex-direction: column;
 }
 
-section:nth-of-type(1) img {
+section:nth-of-type(1) .avatar {
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -193,6 +193,8 @@ nav ul li a {
 
 .form-div input[type="text"],
 .form-div input[type="number"],
+.form-div input[type="password"],
+.form-div input[type="email"],
 .form-div select {
 	display: block;
 	box-sizing: border-box;
@@ -220,4 +222,15 @@ nav ul li a {
 .form-div input[type="button"]:hover, 
 .form-div input[type="submit"]:hover{
 	background: #FF6F91;
+}
+
+.home-main {
+  display: flex;
+  border: 1px solid black;
+  margin-right: auto;
+}
+
+.home-main img {
+  width: 10em;
+  display: flex;
 }

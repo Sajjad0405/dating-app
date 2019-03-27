@@ -1,86 +1,36 @@
-<!DOCTYPE html>
-<html lang="" dir="ltr">
-
-<head>
-  <meta name="charset='UTF-8'" content="">
-  <meta name="viewport" content="width=device-width" , inital-scale=1.0>
-  <link href="../static/styles/main.css" rel="stylesheet" type="text/css">
-</head>
-
-<header>
-  <nav>
-    <ul>
-      <li> <a href="/">Home</a> </li>
-      <li><a href="profile">Profile</a></li>
-    </ul>
-  </nav>
-</header>
+<% include partials/nav.ejs %>
 
 <body>
   <main>
     <section>
-      <img src="../static/images/avatar.png" alt="Profile picture">
+      <img class="avatar" src="../static/images/avatar.png" alt="Profile picture">
       <ul>
-
         <li>Naam: Sajjad Ali </li>
         <li>Age: 22  </li>
         <li>Geslacht: Man  </li>
-        
       </ul>
     </section>
 
     <section>
       <div>
         <h2>
-          Mijn games
+          My Games
         </h2>
       </div>
 
-      <div class="populair">       
-
+      <div class="populair"> 
         <% for (let i = 0; i < data.length; i++) { %>
         <article>
-          <h2><%= data[i].gameNaam%></h2>
-          <a href="gamedetail"><img src="../static/images/dansen.jpg" alt=""></a>
-          <h3>Type: <%= data[i].type %></h3>
-          <h3>Console: <%= data[i].console %></h3>
-          <button id="js-remove" data-id='<%= data[i].id %>' class="danger">Remove</button>
+            <h3>Game Name: <%= data[i].gameNaam %></h3>
+            <h3>Console: <%= data[i].console %> </h3>
+            <h3>Type: <%= data[i].type %> </h3>
+            <img src="static/uploads/<%= data[i].gameImage %>" alt="">
+            <a href="game/<%= data[i]._id %>">View <%= data[i].gameNaam %></a>
         </article>
         <% } %>
-
-        <article>
-            <a class="add" href="game"><img src="../static/images/add.png" alt="">Add a game</a>
-        </article>
-                
+        <a class="add" href="game"><img src="../static/images/add.png" alt="">Add a game</a>
       </div>
     </section>
   </main>
-  
-  <script type="text/javascript">
-
-    var remove = document.getElementById('js-remove');
-    
-    if (remove) {
-      remove.addEventListener('click', onremove)
-    }
-    
-    function onremove(ev) {
-    
-      var node = ev.target;
-      var id = node.dataset.id;
-    
-      var res = new XMLHttpRequest()
-    
-      res.open('DELETE', '/' + id)
-      res.onload = onload
-      res.send()
-    
-      function onload() {
-        if (res.status !== 200) {
-          throw new Error('Could not delete!')
-        }
-        window.location = '/profile'
-      }
-    }
-    </script>
+  <% include partials/tail.ejs %>
 </body>

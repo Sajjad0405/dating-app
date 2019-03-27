@@ -3,13 +3,13 @@
 <body>
 
   <% for (let i = 0; i < data.length; i++) { %>
-  <section>
-      <h3>Game Naam: <%= data[i].gameNaam %></h3>
-      <h3>Console: <%= data[i].console %> </h3>
-      <h3>Type: <%= data[i].type %> </h3>
-      <img src="static/uploads/<%= data[i].gameImage %>" alt="">
-      <a href="game/<%= data[i]._id %>">View <%= data[i].gameNaam %></a>
-      <button id="js-remove" data-id='<%= data._id %>' class="danger">Remove</button>
+  <section class="home-main">
+      <h1>Matches</h1>
+      <h3>Name: <%= data[i].name %></h3>
+      <h3>Age: <%= data[i].age %> </h3>
+      <h3>Gender: <%= data[i].gender %> </h3>
+      <img src="static/uploads/<%= data[i].profilePic %>" alt="">
+      <a href="game/<%= data[i]._id %>">View <%= data[i].name %></a>
   </section>  
   <%}%>
   <% include partials/tail.ejs %>
