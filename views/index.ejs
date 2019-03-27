@@ -1,11 +1,25 @@
 <% include partials/head.ejs %>
-<nav>
-  <ul>
-    <li> <a href="/">Matches</a> </li>
-    <li><a href="/profile">Profile</a></li>
-    <li><a href="/login">Log in</a></li>
-  </ul>
-</nav>
+
+<% if(user) { %>
+  <nav>
+    <ul>
+      <li> <a href="/">Matches</a> </li>
+      <li><a href="/profile">Profile</a></li>
+      <li><a href="<%= user.id %>/logout">Uitloggen</a></li>
+    </ul>
+  </nav>
+
+<% } else { %>
+
+  <nav>
+      <ul>
+        <li> <a href="/">Matches</a> </li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/login">Log in</a></li>
+      </ul>
+    </nav>
+
+  <% } %>
 
 <body>
   <% for (let i = 0; i < data.length; i++) { %>

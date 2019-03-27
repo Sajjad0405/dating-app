@@ -11,8 +11,6 @@ const port = 8000;
 const app = express();
 
 
-
-
 let upload = multer({
   dest: 'static/uploads/',
   limits: {fileSize: 5000000}
@@ -26,35 +24,42 @@ mongo.MongoClient.connect(url,{useNewUrlParser: true}, function (err, client) {
 })
 
 
-// view engine setup
+// Some basic methods which use express
 app
 
     // Setup ejs templating engine and the static folder
    .set('view engine', 'ejs')
    .set('views', 'views')
+
+   //Check the static folder when trying to serve static files like CSS, JS 
    .use('/static', express.static('static'))
+
+   //Using the express session as following
    .use(session({
      resave: false,
      saveUninitialized: true,
      secret: process.env.SESSION_SECRET
    }))
+
+   //Parses strings
    .use(bodyParser.urlencoded({ extended: false}))
    .use(bodyParser.json())
 
+   //All the routes which i use
    .get('/', home)
    .get('/about', about)
    .get('/profile', redirectLogin ,profile)
    .get('/game', redirectLogin, game)
-   .get('/game/:id', redirectLogin, showGame) // weergeeft een losse game
+   .get('/game/:id', redirectLogin, showGame) // view a single game
    .get('/login', login)
    .get('/:id', redirectLogin, showUser)
    .get('/:id/logout', redirectLogin, logOut)
    
 
-   .post('/', upload.single('gameImage'), addGame)
+   .post('/', upload.single('gameImage'), addGame) // add a game in the database
    .post('/login', checkUser)
-   .get('/', gameDetail) //weergeeft alle games
-   .delete('/game/:id', remove)
+   .get('/', gameDetail) //view all games
+   .delete('/game/:id', remove) //Deletes a single game
 
    .use(pageNotFound)
    
@@ -64,23 +69,17 @@ app
 
 
 function home (req, res) {
-
   db.collection('Users').find().toArray(done)
 
   function done(err, data) {
     if(err) {
       next(err)
     } else {
-      res.render('index.ejs', {data})
+      res.render('index.ejs', {
+        data,
+        user: req.session.user
+      })
     }
-  }
-}
-
-function redirectLogin(req, res, next) {
-  if (!req.session.user) {
-      res.redirect('/login');
-  } else {
-      next();
   }
 }
 
@@ -117,7 +116,6 @@ function profile (req, res) {
     if(err) {
       next(err)
     } else {
-      console.log(req.session.user)
       res.render('profile.ejs', {
         data,
         game: req.session.game,
@@ -128,7 +126,9 @@ function profile (req, res) {
 }
 
 function game (req, res) {
-  res.render('game.ejs');
+  res.render('game.ejs', {
+    user: req.session.user
+  });
 }
 
 function login (req, res) { 
@@ -161,7 +161,6 @@ function addGame (req, res, next) {
 }
 
 function showGame(req, res, next) {
-  console.log(req.session.game);
   let id = req.params.id
 
   db.collection('Games').findOne({
@@ -175,7 +174,8 @@ function showGame(req, res, next) {
       req.session.game
       res.render('showgame.ejs', {
         data,
-        game: req.session.game        
+        game: req.session.game,
+        user: req.session.user        
       })
     }
   }
@@ -247,3 +247,44 @@ function logOut(req, res) {
       }
   });
 }
+
+//Check if the session is still active, otherwise redirect to login view
+function redirectLogin(req, res, next) {
+  if (!req.session.user) {
+      res.redirect('/login');
+  } else {
+      next();
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Sources which i used
+//https://www.npmjs.com/package/body-parser
+//https://www.npmjs.com/package/express-session
+//https://stackoverflow.com/questions/32264612/is-express-session-not-working-with-express-4-13
+//https://www.youtube.com/watch?v=hE5zeEiVqpw -> To get a hang on express sessions
+//https://docs.mongodb.com/manual/reference/operator/aggregation/add/
+//https://docs.mongodb.com/manual/reference/method/db.collection.insert/
+//https://www.w3resource.com/mongodb/shell-methods/collection/db-collection-remove.php
+//https://www.npmjs.com/package/multer -> used for uploading files
+//https://www.npmjs.com/package/slug -> Makes strings url save according to npmjs.com

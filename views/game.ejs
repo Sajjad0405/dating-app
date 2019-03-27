@@ -1,4 +1,12 @@
-<% include partials/nav.ejs %>
+<% include partials/head.ejs %>
+
+<nav>
+  <ul>
+    <li> <a href="/">Matches</a> </li>
+    <li><a href="/profile">Profile</a></li>
+    <li><a href="<%= user.id %>/logout">Uitloggen</a></li>
+  </ul>
+</nav>
 
 <body>
   <main>
