@@ -16,7 +16,7 @@ let upload = multer({
   limits: {fileSize: 5000000}
 })
 
-let url = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT
+let url = process.env.MONGODB_URI
 
 mongo.MongoClient.connect(url,{useNewUrlParser: true}, function (err, client) {
   if (err) throw err
@@ -43,7 +43,7 @@ app
 
    //Parses strings
    .use(bodyParser.urlencoded({ extended: false}))
-   .use(bodyParser.json())
+   
 
    //All the routes which i use
    .get('/', home)
@@ -152,7 +152,7 @@ function addGame (req, res, next) {
     } else {
       req.session.game = {
         id: data.insertedId,
-        gameNaam: req.body.gameNaam,
+        gameNaam: req.body.gameNaam
       };     
     }
     res.redirect('/game/' + data.insertedId)
@@ -288,3 +288,5 @@ function redirectLogin(req, res, next) {
 //https://www.w3resource.com/mongodb/shell-methods/collection/db-collection-remove.php
 //https://www.npmjs.com/package/multer -> used for uploading files
 //https://www.npmjs.com/package/slug -> Makes strings url save according to npmjs.com
+// Rijk helped me setting up the routes in a better and logical way, also he helped me aquiring the image from the static folder
+//Kaan helped me alot through out the project. Like helped me debugging and helped solve the errors which i had
