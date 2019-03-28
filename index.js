@@ -7,7 +7,7 @@ const session = require('express-session');
 
 require('dotenv').config();
 
-const port = 8000;
+const port = process.env.PORT || 8000;
 const app = express();
 
 
