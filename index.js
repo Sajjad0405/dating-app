@@ -65,8 +65,8 @@ app
 
 
 function home (req, res) {
+ 
   db.collection('Users').find().toArray(done)
-
   function done(err, data) {
     if(err) {
       next(err)
@@ -80,8 +80,8 @@ function home (req, res) {
 }
 
 function showUser(req, res) {
+  
   let id = req.params.id
-
   db.collection('Users').findOne({
       _id: mongo.ObjectID(id)
   }, function(err, data) {
@@ -108,7 +108,6 @@ function pageNotFound(req, res) {
 function profile (req, res) {
   
   db.collection('Games').find().toArray(done)
-
   function done(err, data) {
     if(err) {
       next(err)
@@ -135,7 +134,6 @@ function login (req, res) {
 function addGame (req, res, next) {
 
   db.collection('Games').insertOne({
-
     id: slug(req.body.gameNaam).toLowerCase(),
     gameNaam: req.body.gameNaam,
     console: req.body.console,
@@ -158,8 +156,8 @@ function addGame (req, res, next) {
 }
 
 function showGame(req, res, next) {
+  
   let id = req.params.id
-
   db.collection('Games').findOne({
     _id: mongo.ObjectID(id)
   }, done)
@@ -179,8 +177,8 @@ function showGame(req, res, next) {
 }
 
 function gameDetail (req, res) {
-  db.collection('Games').find().toArray(done)
 
+  db.collection('Games').find().toArray(done)
   function done(err, data) {
     if(err) {
       next(err)
@@ -192,8 +190,8 @@ function gameDetail (req, res) {
 
 //Check if user has the correct credentials to login
 function checkUser(req, res) {
-  db.collection('Users').find().toArray(done)
 
+  db.collection('Users').find().toArray(done)
   function done(err, data) {
     for(let i = 0; i < data.length; i++) {
       if(err) {
@@ -221,7 +219,6 @@ function checkUser(req, res) {
 function remove(req, res) {
 
     let id = req.params.id
-
     db.collection('Games').deleteOne({
       _id: mongo.ObjectID(id)
     }, done)
@@ -248,6 +245,7 @@ function logOut(req, res) {
 
 //Check if the session is still active, otherwise redirect to login view
 function redirectLogin(req, res, next) {
+
   if (!req.session.user) {
       res.redirect('/login')
   } else {
