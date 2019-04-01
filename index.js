@@ -23,6 +23,9 @@ mongo.MongoClient.connect(url,{useNewUrlParser: true}, function (err, client) {
 })
 
 
+const about = require('./routes/about.js');
+const addGame = require('./routes/addGame.js');
+
 // Some basic methods which use express
 app
 
@@ -30,7 +33,7 @@ app
    .set('view engine', 'ejs')
    .set('views', 'views')
 
-   //Check the static folder when trying to serve static files like CSS, JS 
+   //Check the static folder when trying to serve static files like CSS, JS
    .use('/static', express.static('static'))
 
    //Using the express session as following
@@ -45,27 +48,30 @@ app
 
    //All the routes which i use
    .get('/', home)
-   .get('/about', about)
+   .get('/about', about.about)
    .get('/profile', redirectLogin ,profile)
    .get('/game', redirectLogin, game)
+   .get('/', gameDetail) //view all games
    .get('/game/:id', redirectLogin, showGame) // view a single game
    .get('/login', login)
    .get('/:id', redirectLogin, showUser)
    .get('/:id/logout', redirectLogin, logOut)
-   
-   .post('/', upload.single('gameImage'), addGame) // add a game in the database
+
+   //Get post request from client side to add to or check data from the database
+   .post('/', upload.single('gameImage'), addGame.addGame)
    .post('/login', checkUser)
-   .get('/', gameDetail) //view all games
-   .delete('/game/:id', remove) //Deletes a single game
+
+   //Deletes a single game from the database
+   .delete('/game/:id', remove)
 
    .use(pageNotFound)
-   
+
 
    .listen(port)
 
 
 function home (req, res) {
- 
+
   db.collection('Users').find().toArray(done)
   function done(err, data) {
     if(err) {
@@ -80,7 +86,6 @@ function home (req, res) {
 }
 
 function showUser(req, res) {
-  
   let id = req.params.id
   db.collection('Users').findOne({
       _id: mongo.ObjectID(id)
@@ -96,9 +101,9 @@ function showUser(req, res) {
   })
 }
 
-function about (req, res) {
-    res.render('about.ejs')
-}
+// function about (req, res) {
+//     res.render('about.ejs')
+// }
 
 //Manier van Kaan gebruikt. Bron: https://github.com/cenikk/datingapp/blob/master/index.ejs
 function pageNotFound(req, res) {
@@ -106,7 +111,6 @@ function pageNotFound(req, res) {
 }
 
 function profile (req, res) {
-  
   db.collection('Games').find().toArray(done)
   function done(err, data) {
     if(err) {
@@ -127,36 +131,34 @@ function game (req, res) {
   })
 }
 
-function login (req, res) { 
+function login (req, res) {
   res.render('login.ejs')
 }
 
-function addGame (req, res, next) {
+// function addGame (req, res, next) {
+//   db.collection('Games').insertOne({
+//     id: slug(req.body.gameNaam).toLowerCase(),
+//     gameNaam: req.body.gameNaam,
+//     console: req.body.console,
+//     type: req.body.type,
+//     gameImage: req.file ? req.file.filename : null
+//   }, done)
 
-  db.collection('Games').insertOne({
-    id: slug(req.body.gameNaam).toLowerCase(),
-    gameNaam: req.body.gameNaam,
-    console: req.body.console,
-    type: req.body.type,
-    gameImage: req.file ? req.file.filename : null
-  }, done)
+//   function done(err, data) {
+//     if (err) {
+//       next(err)
+//     } else {
+//       req.session.game = {
+//         id: data.insertedId,
+//         gameNaam: req.body.gameNaam
+//       }
+//     }
+//     res.redirect('/game/' + data.insertedId)
+//   }
 
-  function done(err, data) {
-    if (err) {
-      next(err)
-    } else {
-      req.session.game = {
-        id: data.insertedId,
-        gameNaam: req.body.gameNaam
-      }
-    }
-    res.redirect('/game/' + data.insertedId)
-  }
-  
-}
+// }
 
 function showGame(req, res, next) {
-  
   let id = req.params.id
   db.collection('Games').findOne({
     _id: mongo.ObjectID(id)
@@ -170,14 +172,13 @@ function showGame(req, res, next) {
       res.render('showgame.ejs', {
         data,
         game: req.session.game,
-        user: req.session.user        
+        user: req.session.user
       })
     }
   }
 }
 
 function gameDetail (req, res) {
-
   db.collection('Games').find().toArray(done)
   function done(err, data) {
     if(err) {
@@ -190,7 +191,6 @@ function gameDetail (req, res) {
 
 //Check if user has the correct credentials to login
 function checkUser(req, res) {
-
   db.collection('Users').find().toArray(done)
   function done(err, data) {
     for(let i = 0; i < data.length; i++) {
@@ -217,7 +217,6 @@ function checkUser(req, res) {
 
 //Remove a game
 function remove(req, res) {
-
     let id = req.params.id
     db.collection('Games').deleteOne({
       _id: mongo.ObjectID(id)
@@ -233,7 +232,6 @@ function remove(req, res) {
 
 //Logout as a user and get redirected to index/home. The session gets destoyed!
 function logOut(req, res) {
-
   req.session.destroy(function (err) {
       if (err) {
           console.log("An error has occured", err)
@@ -245,7 +243,6 @@ function logOut(req, res) {
 
 //Check if the session is still active, otherwise redirect to login view
 function redirectLogin(req, res, next) {
-
   if (!req.session.user) {
       res.redirect('/login')
   } else {
