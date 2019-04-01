@@ -21,20 +21,20 @@ mongo.MongoClient.connect(url,{useNewUrlParser: true}, function (err, client) {
   db = client.db(process.env.DB_NAME)
 })
 
-const home = require('./routes/home.js')
-const about = require('./routes/about.js');
-const addGame = require('./routes/addGame.js');
-const showUser = require('./routes/showUser.js');
-const pageNotFound = require('./routes/pageNotFound.js');
-const profile = require('./routes/profile.js');
-const game = require('./routes/game.js')
-const showGame = require('./routes/showGame.js')
-const login = require('./routes/login.js')
-const gameDetail = require('./routes/gameDetail.js')
-const checkUser = require('./routes/checkUser.js')
-const remove = require('./routes/remove.js')
-const logOut = require('./routes/logOut.js')
-const redirectLogin = require('./routes/redirectLogin.js')
+const home = require('./functions/home.js')
+const about = require('./functions/about.js');
+const addGame = require('./functions/addGame.js');
+const showUser = require('./functions/showUser.js');
+const pageNotFound = require('./functions/pageNotFound.js');
+const profile = require('./functions/profile.js');
+const game = require('./functions/game.js')
+const showGame = require('./functions/showGame.js')
+const login = require('./functions/login.js')
+const gameDetail = require('./functions/gameDetail.js')
+const checkUser = require('./functions/checkUser.js')
+const remove = require('./functions/remove.js')
+const logOut = require('./functions/logOut.js')
+const redirectLogin = require('./functions/redirectLogin.js')
 
 // Some basic methods which use express
 app
