@@ -7,8 +7,6 @@ const session = require('express-session');
 const dotenv = require('dotenv').config();
 
 const port = process.env.PORT || 8000
-const app = express();
-
 let upload = multer({
   dest: 'static/uploads/',
   limits: {fileSize: 5000000}
@@ -21,21 +19,22 @@ mongo.MongoClient.connect(url,{useNewUrlParser: true}, function (err, client) {
   db = client.db(process.env.DB_NAME)
 })
 
-const home = require('./functions/home.js')
-const about = require('./functions/about.js');
-const addGame = require('./functions/addGame.js');
-const showUser = require('./functions/showUser.js');
-const pageNotFound = require('./functions/pageNotFound.js');
-const profile = require('./functions/profile.js');
-const game = require('./functions/game.js')
-const showGame = require('./functions/showGame.js')
-const login = require('./functions/login.js')
-const gameDetail = require('./functions/gameDetail.js')
-const checkUser = require('./functions/checkUser.js')
-const remove = require('./functions/remove.js')
-const logOut = require('./functions/logOut.js')
-const redirectLogin = require('./functions/redirectLogin.js')
+const home = require('./controllers/home.js')
+const about = require('./controllers/about.js');
+const addGame = require('./controllers/addGame.js');
+const showUser = require('./controllers/showUser.js');
+const pageNotFound = require('./controllers/pageNotFound.js');
+const profile = require('./controllers/profile.js');
+const game = require('./controllers/game.js')
+const showGame = require('./controllers/showGame.js')
+const login = require('./controllers/login.js')
+const gameDetail = require('./controllers/gameDetail.js')
+const checkUser = require('./controllers/checkUser.js')
+const remove = require('./controllers/remove.js')
+const logOut = require('./controllers/logOut.js')
+const redirectLogin = require('./controllers/redirectLogin.js')
 
+const app = express();
 // Some basic methods which use express
 app
     // Setup ejs templating engine and the static folder
