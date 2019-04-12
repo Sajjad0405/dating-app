@@ -31,6 +31,7 @@ let carousels = document.getElementsByClassName('image-carousel');
         }
         //voeg elke keer een image toe door width op te tellen
         function switchImg () {
+            //elke keer dat deze functie wordt aangeroepen, -schuif -19.3em naar links
             inner.style.left = -width * currentImageIndex + 'em';
             
             //voor elke image die er zijn, geef de bijbehorende bubble de class active
@@ -43,25 +44,29 @@ let carousels = document.getElementsByClassName('image-carousel');
             })
         }
 
+        // Voeg een item toe in de curretImageIndex
         next.addEventListener('click', function () {
                 currentImageIndex++;
-                       
+            //check op welke image je bent                       
             if(currentImageIndex >= imgs.length) {
                 currentImageIndex = 0;
             }
             switchImg();
 
         })
-
+        
+        //Onclick, weergeef de vorige image door de index op minus te zetten
         prev.addEventListener('click', function () {
             currentImageIndex--;
-
+            //check op welke image bent
             if(currentImageIndex < 0) {
                 currentImageIndex = imgs.length -1;
             }
+
+            //elke keer als de image gecheckt is,voer de switchimg functie uit die de width van de carousel aanpast
             switchImg();
         });
-
+        //On load van de body, begin bij de eerste bubble
         switchImg();
     });
 
@@ -71,3 +76,4 @@ let carousels = document.getElementsByClassName('image-carousel');
     // https://stackoverflow.com/questions/42262810/trying-to-code-a-simple-carousel
     // https://codereview.stackexchange.com/questions/187088/javascript-image-carousel
     // https://codereview.stackexchange.com/questions/164192/javascript-jquery-carousel-slider
+    // https://www.youtube.com/watch?v=KcdBOoK3Pfw
