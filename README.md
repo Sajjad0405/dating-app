@@ -22,3 +22,16 @@ To run the application, run this piece of code:
 npm run Start
 
 ```
+
+To run the app in development:
+
+```
+npm run dev
+
+```
+
+
+
+### Licence 
+
+MIT
