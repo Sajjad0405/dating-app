@@ -7,7 +7,7 @@ let carousels = document.getElementsByClassName('image-carousel');
             inner =  c.getElementsByClassName('inner')[0],
             imgs = inner.getElementsByClassName('carousel-img'),
             currentImageIndex = 0,
-            width = 22,
+            width = 19.3,
             bubbles = [];
         
         for (let i =0; i < imgs.length; i++) {
@@ -22,12 +22,11 @@ let carousels = document.getElementsByClassName('image-carousel');
                 switchImg();
             })
         }
-
+        //voeg elke keer een image toe door width op te tellen
         function switchImg () {
-
-            var numberOfCarouselItems = document.querySelectorAll('carousel-img').length;
             inner.style.left = -width * currentImageIndex + 'em';
-
+            
+            //voor elke image die er zijn, geef de bijbehorende bubble de class active
             bubbles.forEach(function (b, i) {
                 if (i === currentImageIndex) {
                     b.classList.add('active');

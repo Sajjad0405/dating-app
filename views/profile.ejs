@@ -8,15 +8,13 @@
   </ul>
 </nav>
 
-<body>
+<body class="js-enabled">
   <main>
-    <section>
+    <section class="profile">
       <img class="avatar" src="../static/uploads/<%=user.profilePic%>" alt="Profile picture">
-      <ul>
-        <li>Name: <%= user.username %> </li>
-        <li>Age: <%= user.age %> </li>
-        <li>Gender: <%= user.gender %> </li>
-      </ul>
+      <h3>Name: <%= user.username %> </h3>
+      <h3>Age: <%= user.age %> </h3>
+      <h3>Gender: <%= user.gender %> </h3>
     </section>
 
     <section>
@@ -27,6 +25,9 @@
       </div>
 
       <div class="populair">
+        <article class="add-game">
+            <a class="add" href="game"><img src="../static/images/add.png" alt="">Add a game</a>
+        </article>
         <div class="image-carousel">
           <div class="inner">
               <% for (let i = 0; i < data.length; i++) { %>
@@ -49,4 +50,15 @@
        
   </main>
   <script src="../../static/js/carousel.js"></script>
+  <noscript>
+    <style>
+      section div:nth-child(1) {
+        overflow-x: scroll;
+      }
+
+      .next::after, .prev::after {
+        display: none;
+      }
+    </style>
+  </noscript>
 </body>

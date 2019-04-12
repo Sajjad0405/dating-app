@@ -23,11 +23,24 @@ section:nth-of-type(1) .avatar {
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  width: 11em;
+  width: 15em;
+  border-radius: 10px;
 }
 
 section {
   padding: 1em;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.profile h3 {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.4em;
 }
 
 section div {
@@ -72,6 +85,16 @@ section:nth-of-type(2)>div:nth-of-type(1) {
 .add img {
   width: 2em;
   height: 2em;
+}
+
+
+.add-game {
+  background-color: #845ec2;
+  height: 34em;
+}
+
+.add {
+  color: white;
 }
 
 div article {
