@@ -1,45 +1,161 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title></title>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Carousel</title>
 
-<script type="text/javascript">
-    var i = 0;
-    var images = [];
-    var time = 3000;
-
-
-    images[0] = 'static/images/add.png';
-    images[1] = 'static/images/avatar.png';
-    images[2] = 'static/images/dansen.jpg';
-
-
-    function changeImage() {
-
-        console.log(images[i]);
-        console.log(document);
-
-
-        document.slide.src = images[i];
-
-        if (i < images.length - 1) {
-            i++;
-        } else {
-            i = 0;
+    <style>
+        .image-carousel {
+            width: 640px;
+            height: 480px;
+            overflow: hidden;
+            position: relative;
         }
 
-        setTimeout("changeImage()", time);
-    }
+        .inner {
+            display: flex;
+            position: absolute;
+            left: 0;
+            transition: left 0.25s;
+        }
 
-    window.onload = changeImage();
+        .next::after, .prev::after {
+            content: '>';
+            position: absolute;
+            top:50%;
+            right: 0;
+            background-color: white;
+            width: 1em;
+            height: 3em;
+            font-size: 1.4em;
+            font-family: sans-serif;
+            font-weight: bold;
+            transform: translateY(-50%);
+            line-height: 3em;
+            box-sizing: border-box;
+            padding: 0 0.2em;
+            opacity: 0.25;
+            transition: opacity 0.1s linear;
+        }
 
-</script>
+        .next:hover::after, .prev:hover::after {
+            opacity: 1;
+        }
 
-<body>
-    <img name="slide" width="400" height="200" />
+
+        .prev::after {
+            content: '<';
+            left: 0;
+        }
+
+        .bubbles {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin-bottom: 5px;
+        }
+
+        .bubble {
+            margin: 2.5px;
+            background-color: white;
+            border-radius: 1000000px;
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            opacity: 0.25;
+            transition: 0.1s linear;
+            cursor: pointer;
+        }
+
+        .bubble:hover {
+            opacity: 0.65;
+        }
+
+        .active {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body class="js-enabled">
+    <div class="image-carousel">
+        <div class="inner">
+            <img src="test/sun.jpg" alt="">
+            <img src="test/galaxy.jpg" alt="">
+            <img src="test/autum.jpg" alt="">
+            <img src="test/robot.jpg" alt="">
+        </div>
+        <div class="bubbles"></div>
+        <div class="prev"></div>
+        <div class="next"></div>
+    </div>
+
+    <script>
+
+        let carousels = document.getElementsByClassName('image-carousel');
+
+        [].forEach.call(carousels, function (c) {
+            let next = c.getElementsByClassName('next')[0],
+                prev = c.getElementsByClassName('prev')[0],
+                bubblesContainer = c.getElementsByClassName('bubbles')[0],
+                inner =  c.getElementsByClassName('inner')[0],
+                imgs = inner.getElementsByTagName('img'),
+                currentImageIndex = 0,
+                width = 640,
+                bubbles = [];
+            
+            for (let i =0; i < imgs.length; i++) {
+                let b = document.createElement('span');
+                b.classList.add('bubble');
+                bubblesContainer.appendChild(b);
+                bubbles.push(b);
+
+                b.addEventListener('click', function () {
+                    currentImageIndex = i;
+                    switchImg();
+                })
+            }
+
+            function switchImg () {
+                inner.style.left = -width * currentImageIndex + 'px';
+
+                bubbles.forEach(function (b, i) {
+                    if (i === currentImageIndex) {
+                        b.classList.add('active');
+                    } else {
+                        b.classList.remove('active');
+                    }
+                })
+            }
+
+            next.addEventListener('click', function () {
+                currentImageIndex++;
+
+                if(currentImageIndex >= imgs.length) {
+                    currentImageIndex = 0;
+                }
+
+                switchImg();
+
+            })
+
+            prev.addEventListener('click', function () {
+                currentImageIndex--;
+
+                if(currentImageIndex < 0) {
+                    currentImageIndex = imgs.length -1;
+                }
+
+                switchImg();
+            });
+
+            switchImg();
+        });
+    </script>
 </body>
-
 </html>

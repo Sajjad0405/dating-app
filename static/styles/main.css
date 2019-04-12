@@ -31,9 +31,8 @@ section {
 }
 
 section div {
-  background-color: #F4E6D8;
   display: flex;
-  overflow-x: scroll;
+  overflow-x: hidden;
   margin-bottom: 1.3em;
   border-radius: 0.5em 0.5em 0em 0em;
   margin-left: 1em;
@@ -76,25 +75,12 @@ section:nth-of-type(2)>div:nth-of-type(1) {
 }
 
 div article {
-  flex-shrink: 0;
-  width: 15em;
+  width: 16.5em;
   margin: 1em;
   -webkit-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.33);
   -moz-box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.33);
   box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.33);
   padding: 1em;
-}
-
-article > h2 {
-  background-color: white;
-  color: #00d66c;
-}
-
-section > h2 {
-  font-size: 1.4em;
-  color: white;
-  background: #ff3268;
-  border: 1em;
 }
 
 article {
@@ -103,9 +89,8 @@ article {
   padding: 0.5em 0 0.5em;
   margin-bottom: 0.9em;
   margin-right: 1em;
-  color: #00d66c;
+  color: black;
   border-radius: 5px;
-  font-size: 1em;
   position: relative;
 }
 
@@ -233,4 +218,103 @@ nav ul li a {
 .home-main img {
   width: 10em;
   display: flex;
+}
+
+
+
+/* Image carousel */
+
+.image-carousel {
+  width: 100%;
+  height: 42em;
+  overflow: hidden;
+  position: relative;
+}
+
+.inner {
+  display: flex;
+  position: absolute;
+  left: 0;
+  transition: left 0.25s;
+}
+
+.next::after, .prev::after {
+  content: '>';
+  position: absolute;
+  top:45%;
+  right: 0;
+  background-color: black;
+  width: 1.5em;
+  height: 1.5em;
+  font-size: 2em;
+  font-family: sans-serif;
+  font-weight: bold;
+  transform: translateY(-50%);
+  line-height: 1.5em;
+  box-sizing: border-box;
+  padding: 0 0.2em;
+  opacity: 0.45;
+  transition: opacity 0.1s linear;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.next:hover::after, .prev:hover::after {
+  opacity: 1;
+}
+
+
+.prev::after {
+  content: '<';
+  left: 0;
+}
+
+.bubbles {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 85px;
+}
+
+.bubble {
+  margin: 2.5px;
+  background-color: black;
+  border-radius: 1000000px;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  opacity: 0.25;
+  transition: 0.1s linear;
+  cursor: pointer;
+}
+
+.bubble:hover {
+  opacity: 0.65;
+}
+
+.active {
+  opacity: 1;
+}
+
+.carousel-img {
+  width: 25em; 
+  height: 20em; 
+  margin-bottom: 1em;
+}
+
+.carousel-link {
+	background: #D65DB1;
+	padding: 8px 20px 8px 20px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	color: #fff;
+	border: none;
+  font-size: 1.4em;
+  text-decoration: none;
+  margin-left: auto;
+  margin-right: auto;
 }

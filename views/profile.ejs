@@ -26,19 +26,27 @@
         </h2>
       </div>
 
-      <div class="populair"> 
-        <% for (let i = 0; i < data.length; i++) { %>
-        <article>
-            <h3>Game Name: <%= data[i].gameNaam %></h3>
-            <h3>Console: <%= data[i].console %> </h3>
-            <h3>Type: <%= data[i].type %> </h3>
-            <img src="static/uploads/<%= data[i].gameImage %>" alt="">
-            <a href="game/<%= data[i]._id %>">View <%= data[i].gameNaam %></a>
-        </article>
-        <% } %>
-        <a class="add" href="game"><img src="../static/images/add.png" alt="">Add a game</a>
+      <div class="populair">
+        <div class="image-carousel">
+          <div class="inner">
+              <% for (let i = 0; i < data.length; i++) { %>
+                <article class="carousel-item">
+                    <h3>Game Name: <%= data[i].gameNaam %></h3>
+                    <h3>Console: <%= data[i].console %> </h3>
+                    <h3>Type: <%= data[i].type %> </h3>
+                    <img class="carousel-img"src="static/uploads/<%= data[i].gameImage %>" alt="">
+                    <a class="carousel-link" href="game/<%= data[i]._id %>">View <%= data[i].gameNaam %></a>
+                </article>
+              <% } %>
+          </div>
+          <div class="bubbles"></div>
+          <div class="prev"></div>
+          <div class="next"></div>
+      </div> 
       </div>
     </section>
+    
+       
   </main>
-  <% include partials/tail.ejs %>
+  <script src="../../static/js/carousel.js"></script>
 </body>
