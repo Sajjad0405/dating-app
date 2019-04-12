@@ -33,6 +33,7 @@
     "eslint": "^5.16.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "jslint": "^0.12.1",
     "mongodb": "^3.1.13",
     "multer": "^1.4.1",
     "path": "^0.12.7",
