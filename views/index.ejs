@@ -22,15 +22,34 @@
   <% } %>
 
 <body>
+  <section class="matches">
+        <h1>Matches</h1>
+  </section>
+  
   <% for (let i = 0; i < data.length; i++) { %>
   <section class="home-main">
-      <h1>Matches</h1>
-      <h3>Name: <%= data[i].name %></h3>
-      <h3>Age: <%= data[i].age %> </h3>
-      <h3>Gender: <%= data[i].gender %> </h3>
-      <img src="static/uploads/<%= data[i].profilePic %>" alt="">
-      <a href="/<%= data[i]._id %>">Maak kennis met <%= data[i].name %></a>
+    <article>
+        <img src="static/uploads/<%= data[i].profilePic %>" alt="">
+      
+        <h3>Name: <%= data[i].name %></h3>
+        <h3>Age: <%= data[i].age %> </h3>
+        <h3>Gender: <%= data[i].gender %> </h3>
+        <a href="/<%= data[i]._id %>">Maak kennis met <%= data[i].name %></a>
+    </article>
+      
   </section>  
   <%}%>
+
+  <section class="home-main">
+    <article>
+        <img src="static/images/kaan.jpg" alt="">
+      
+        <h3>Name: Jan Willem</h3>
+        <h3>Age: 25 </h3>
+        <h3>Gender: Man </h3>
+        <a href="http://localhost:8000/5c9c857eb2156b0484ceff0a">Maak kennis met Jan Willem</a>
+    </article>
+      
+  </section>  
   <% include partials/tail.ejs %>
 </body>
