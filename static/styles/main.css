@@ -184,6 +184,23 @@ nav ul li a {
   }
 }
 
+@media (max-width: 32em) {
+  .image-carousel {
+    overflow: scroll;
+  }
+
+  .inner {
+    overflow-x: scroll;
+  }
+
+  .next::after, .prev::after {
+    display: none;
+  }
+  .add-game {
+    display: none;
+  }
+}
+
 .form-div{
 	width:90%;
 	padding: 1.8em;
@@ -292,7 +309,7 @@ nav ul li a {
 .image-carousel {
   width: 100%;
   height: 42em;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
 }
 
@@ -383,3 +400,11 @@ nav ul li a {
   margin-left: auto;
   margin-right: auto;
 }
+
+.js-enabled .image-carousel {
+  overflow-x: scroll;
+}
+
+.js-enabled .next::after, .js-enabled .prev::after {
+      display: none;
+  }

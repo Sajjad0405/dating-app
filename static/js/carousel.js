@@ -1,3 +1,10 @@
+let body = document.querySelector('body');
+
+if(body) {
+    body.classList.remove('js-enabled');
+}
+
+
 let carousels = document.getElementsByClassName('image-carousel');
 
     [].forEach.call(carousels, function (c) {
@@ -57,3 +64,10 @@ let carousels = document.getElementsByClassName('image-carousel');
 
         switchImg();
     });
+
+
+    // Bronnen:
+    // https://stackoverflow.com/questions/36570974/responsive-carousel-issue/36571670
+    // https://stackoverflow.com/questions/42262810/trying-to-code-a-simple-carousel
+    // https://codereview.stackexchange.com/questions/187088/javascript-image-carousel
+    // https://codereview.stackexchange.com/questions/164192/javascript-jquery-carousel-slider
